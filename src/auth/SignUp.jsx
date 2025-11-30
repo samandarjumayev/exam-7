@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
-import { signupSchema } from "./signupSchema";
+import { validation } from "./validation";
 
 const initialValues = {
     username: '',
@@ -16,7 +16,7 @@ export default function SignUp(){
     const {mode} = useSelector(state => state.backend);
     const {values, handleSubmit, handleBlur, handleChange, errors, touched} = useFormik({
         initialValues,
-        validationSchema: signupSchema,
+        validationSchema: validation,
         onSubmit: (value) => {
             console.log(value);
             localStorage.setItem('isAuth', true);

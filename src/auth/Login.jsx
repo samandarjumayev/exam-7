@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginSchema } from "./loginSchema";
+import { validation } from "./validation";
 
 const initialValues = {
     email: '',
@@ -13,7 +13,7 @@ export default function Login(){
     const {mode} = useSelector(state => state.backend);
     const {values, handleSubmit, handleChange, handleBlur, errors, touched} = useFormik({
         initialValues, 
-        validationSchema: loginSchema,
+        validationSchema: validation,
         onSubmit: (value) => {
             console.log(value);
             if(value.email == 'samandar@gmail.com' && value.password == 72626327){
