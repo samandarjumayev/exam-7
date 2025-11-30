@@ -27,7 +27,7 @@ export default function Footer(){
                 <div>
                     <h2 className="mb-6 text-sm font-semibold text-heading uppercase">Products</h2>
                     <ul className="text-body font-medium">
-                        <li class="mb-4">
+                        <li className="mb-4">
                             <NavLink to={'/all_products'} className="hover:underline ">All Products</NavLink>
                         </li>
                         <li>
@@ -57,7 +57,7 @@ export default function Footer(){
                     <Instagram size={20} />
                     <span className="sr-only">Instagram page</span>
                 </a>
-                <a href="https://github.com/samandarjumayev" class="text-body hover:text-heading ms-5">
+                <a href="https://github.com/samandarjumayev" className="text-body hover:text-heading ms-5">
                     <Github size={20} />
                     <span className="sr-only">GiHub community</span>
                 </a>

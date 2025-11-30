@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
 import { validation } from "./validation";
+import { login } from "../redux/backendSlice";
+import { validationLogin } from "./validationLogin";
 
 const initialValues = {
     email: '',
@@ -11,21 +13,17 @@ const initialValues = {
 export default function Login(){
     const navigate = useNavigate()
     const {mode} = useSelector(state => state.backend);
+    const dispatch = useDispatch()
     const {values, handleSubmit, handleChange, handleBlur, errors, touched} = useFormik({
         initialValues, 
-        validationSchema: validation,
+        validationSchema: validationLogin,
         onSubmit: (value) => {
             console.log(value);
-            if(value.email == 'samandar@gmail.com' && value.password == 72626327){
-                localStorage.setItem('isAdmin', true);
-                navigate('/');
-            }
-            
         }
     })
 
     return <div className={`${mode ? `dark` : `light`} w-full h-[calc(100vh-70px)] flex items-center justify-center`}>
-        <form onSubmit={handleSubmit} action="" className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} w-[420px] flex flex-col gap-2 p-8 rounded-lg border-1 border-zinc-800/70`} >
+        <form onSubmit={handleSubmit} action="" className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} w-[420px] flex flex-col gap-2 p-8 rounded-lg border border-zinc-800/70`} >
             <h1 className="text-3xl font-semibold mb-3">Login</h1>
             <div className="flex flex-col">
                 <label htmlFor="email">Email</label>
@@ -42,7 +40,7 @@ export default function Login(){
                 <p className="text-[13px] text-red-500">{touched.email && errors.email}</p>
             </div>
             <div className="flex flex-col">
-                <label htmlFor="email">Password</label>
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
                     name="password" 

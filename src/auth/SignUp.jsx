@@ -1,7 +1,8 @@
 import { useFormik } from "formik";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
 import { validation } from "./validation";
+import { signup } from "../redux/backendSlice";
 
 const initialValues = {
     username: '',
@@ -13,21 +14,19 @@ const initialValues = {
 
 export default function SignUp(){
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {mode} = useSelector(state => state.backend);
     const {values, handleSubmit, handleBlur, handleChange, errors, touched} = useFormik({
         initialValues,
         validationSchema: validation,
         onSubmit: (value) => {
-            console.log(value);
-            localStorage.setItem('isAuth', true);
-            localStorage.setItem('isAdmin', false)
-            localStorage.setItem('user', JSON.stringify(value));
+            dispatch(signup(value))
             navigate('/')
         }
     })
 
     return <div className={`${mode ? `dark` : `light`} w-full h-[calc(100vh-70px)] flex items-center justify-center`}>
-        <form onSubmit={handleSubmit} action="" className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} w-[420px] flex flex-col gap-2 p-8 rounded-lg border-1 border-zinc-800/70`} >
+        <form onSubmit={handleSubmit} action="" className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} w-[420px] flex flex-col gap-2 p-8 rounded-lg border border-zinc-800/70`} >
             <h1 className="text-3xl font-semibold mb-3">Create Account</h1>
             <div className="flex flex-col">
                 <label htmlFor="username">Username</label>

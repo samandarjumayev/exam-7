@@ -7,14 +7,7 @@ import { useState } from "react";
 export default function Header(){
     const [hide, setHide] = useState(true);
 
-    // localStorage.setItem('isAdmin', true);
-    // localStorage.clear()
-    // localStorage.setItem('isAuth', true);
-
-    const isAdmin = localStorage.getItem('isAdmin');
-    const isAuth = localStorage.getItem('isAuth');
-
-    const {mode} = useSelector(state => state.backend);
+    const {mode, isAuth, isAdmin} = useSelector(state => state.backend);
     const dispatch = useDispatch()
 
     return <div className={`${mode ? `bg-[#151525] text-white` : `bg-[linear-gradient(to_right,#2553FF,#5A7BFF)] text-white`} sticky top-0 h-[70px] z-10 transition-all duration-200`}>
@@ -117,6 +110,7 @@ export default function Header(){
                 <button onClick={() => setHide(!hide)} className={`flex lg:hidden cursor-pointer hover:bg-white/10 py-2 px-2 rounded`}>
                     <Menu />
                 </button>
+                {}
             </div>
         </div>
     </div>
