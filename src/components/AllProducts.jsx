@@ -48,7 +48,7 @@ export default function AllProducts(){
                             </div>
                             <div className="flex-1 px-5 py-3 flex flex-col gap-0">
                                 <p className="mb-2">{item.title}</p>
-                                <p className="text-[14px] text-zinc-500 leading-[15px]">{item.description.slice(0, 60)}</p>
+                                <p className="text-[14px] text-zinc-500 leading-[15px]">{item.description.slice(0, 60)}...</p>
                                 <p className="text-xl font-semibold text-[#5537EB]">${item.price}</p>
                                 <p className="flex items-center gap-1 text-[14px]"><Star color="yellow" size={13} />{item.rating}</p>
                                 <div className="w-full flex gap-2 mt-2">
