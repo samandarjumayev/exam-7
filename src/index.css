@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+.dark {
+  background-color: #040609;
+  color: #fff;
+  transition: all 0.2s ease-in;
+}
+.light {
+  background-color: #ecf4fb;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 30px;
+}
