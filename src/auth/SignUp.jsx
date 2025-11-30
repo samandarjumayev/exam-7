@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
-import { signupSchema } from "./SignupSchema";
+import { signupSchema } from "./signupSchema";
 
 const initialValues = {
     username: '',
