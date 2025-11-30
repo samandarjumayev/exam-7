@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setMode } from "../redux/backendSlice";
+import { logout, setMode } from "../redux/backendSlice";
 import { NavLink } from "react-router-dom";
-import { ChartBarStacked, ChartNoAxesCombined, FolderKanban, Home, LibraryBig, LogIn, Menu, Moon, ScanEye, ShoppingCart, Sun, Users } from "lucide-react";
+import { ChartBarStacked, ChartNoAxesCombined, FolderKanban, Home, LibraryBig, LogIn, LogOut, Menu, Moon, ScanEye, ShoppingCart, Sun, User, Users } from "lucide-react";
 import { useState } from "react";
 
 export default function Header(){
     const [hide, setHide] = useState(true);
+    const [profileHide, setProfileHide] = useState(true);
 
     const {mode, isAuth, isAdmin} = useSelector(state => state.backend);
     const dispatch = useDispatch()
@@ -110,7 +111,28 @@ export default function Header(){
                 <button onClick={() => setHide(!hide)} className={`flex lg:hidden cursor-pointer hover:bg-white/10 py-2 px-2 rounded`}>
                     <Menu />
                 </button>
-                {}
+                {isAdmin ? (
+                    <div>
+                        <button className="bg-orange-500 text-black rounded-full w-[33px] h-[33px] cursor-pointer font-semibold">A</button>
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                {isAuth ? (
+                    <div className="relative">
+                        <button className="bg-orange-600 w-[35px] h-[35px] rounded-full text-xl font-semibold flex items-center justify-center cursor-pointer transition-all duration-150 active:duration-75 active:scale-95">{JSON.parse(localStorage.getItem('user')).username.slice(0, 1)}</button>
+
+                        <div className={`${mode ? `bg-[#191929]` : `bg-[linear-gradient(to_right,#2553FF,#5A7BFF)]`} flex absolute right-0 top-[55px] flex-col gap-2 border p-4 border-zinc-700 rounded-lg`}>
+                            <p className="flex items-center gap-1 bg-white/10 py-2 px-4 rounded-lg cursor-context-menu"><User /> {JSON.parse(localStorage.getItem('user')).username}</p>
+                            <button onClick={() => {
+                                setProfileHide(!profileHide);
+                                dispatch(logout())
+                            }} className="flex items-center justify-center w-full bg-red-600 text-white py-1 rounded-lg cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">Log Out <LogOut /></button>
+                        </div>
+                    </div>
+                ) : (
+                    <div></div>
+                )}
             </div>
         </div>
     </div>

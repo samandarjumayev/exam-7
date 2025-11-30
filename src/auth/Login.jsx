@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom";
 import { validation } from "./validation";
-import { login } from "../redux/backendSlice";
+import { admin, login } from "../redux/backendSlice";
 import { validationLogin } from "./validationLogin";
 
 const initialValues = {
@@ -18,7 +18,18 @@ export default function Login(){
         initialValues, 
         validationSchema: validationLogin,
         onSubmit: (value) => {
-            console.log(value);
+            if(value.email == 'samandar@gmail.com' && value.password == 72626327){
+                dispatch(admin());
+                navigate('/dashboard')
+            }else {
+                let user = JSON.parse(localStorage.getItem('user'));
+                if(!!user && value.email == user.email && value.password == user.password ){
+                    dispatch(login());
+                    navigate('/')
+                } else {
+                    navigate('/signup')
+                }
+            }
         }
     })
 

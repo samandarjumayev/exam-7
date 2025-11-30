@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function ProtectedRouter({children}){
-    let isAuth = localStorage.getItem('isAuth');
-    const navigate = useNavigate()
+    const isAdmin = localStorage.getItem('isAdmin')
 
-    if(!isAuth){
-        return navigate('/login')
+    if(!isAdmin){
+        return <Navigate to={'/login'} replace ></Navigate>
     }
 
     return children;

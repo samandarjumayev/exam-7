@@ -7,8 +7,6 @@ export const fetchAllProducts = createAsyncThunk('fetchProducts/products', async
     return resp.data.products;
 });
 
-export const fetchRecipes = createAsyncThunk('')
-
 const initialState = {
     mode: true,
     isAdmin: !!localStorage.getItem('isAdmin'),
@@ -26,17 +24,18 @@ const backendSlice = createSlice({
         setMode: (state) => {
             state.mode = !state.mode
         },
-        login: (state, action) => {
-            if(action.payload.isAdmin){
-                state.isAdmin = true;
-                localStorage.setItem('isAdmin', true)
-            }
+        login: (state) => {
             state.isAuth = true;
-            localStorage.setItem('isAuth', true)
+            localStorage.setItem('isAuth', true);
+        },
+        admin: (state) => {
+            state.isAdmin = true;
+            localStorage.setItem('isAdmin', true);
+            localStorage.setItem('user', 'Admin')
         },
         logout: (state) => {
             state.isAuth = false;
-            localStorage.setItem('isAuth', false);
+            localStorage.removeItem('isAuth');
         },
         signup: (state, action) => {
             state.user = action.payload;
@@ -60,5 +59,5 @@ const backendSlice = createSlice({
     }
 });
 
-export const {setMode, login, logout, signup} = backendSlice.actions;
+export const {setMode, login, admin, logout, signup} = backendSlice.actions;
 export default backendSlice.reducer;

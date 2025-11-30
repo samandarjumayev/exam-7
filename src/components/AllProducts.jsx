@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchAllProducts } from "../redux/backendSlice"
 import Loader from "../ui/Loader"
 import Error from "../ui/Error"
-import { Lock, Pen, ShoppingCart, Star, Trash } from "lucide-react"
+import { Edit, Lock, Pen, ShoppingCart, Star, Trash } from "lucide-react"
 
 export default function AllProducts(){
     const dispatch = useDispatch()
@@ -34,7 +34,7 @@ export default function AllProducts(){
 
             <div className="flex flex-col h-[calc(100vh-70px)] gap-5 pt-5">
                 <div className="flex flex-col gap-3">
-                    <h1>All Products</h1>
+                    <h1 className="text-xl font-bold">All Products</h1>
                     <input onChange={(e) => {
                         console.log(e.target.value)
                     }} type="text" placeholder="Enter something" className="border border-zinc-700 w-full outline-none px-5 py-2 rounded-lg" />
@@ -54,12 +54,12 @@ export default function AllProducts(){
                                 <div className="w-full flex gap-2 mt-2">
                                     <button className="flex items-center justify-center gap-1 bg-[#5537EB] flex-1 py-2 px-3 rounded-lg cursor-pointer transition-all duration-200 active:duration-75 active:scale-95"><ShoppingCart /> Add</button>
                                     {isAdmin ? (
-                                        <div className="flex items-center">
-                                            <button>
-                                                <Pen color="green" size={18} />
+                                        <div className="flex items-center gap-1">
+                                            <button className="cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">
+                                                <Edit color="green" size={25} />
                                             </button>
-                                            <button>
-                                                <Trash color="red" size={18} />
+                                            <button className="cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">
+                                                <Trash color="red" size={25} />
                                             </button>
                                         </div>
                                     ) : (
