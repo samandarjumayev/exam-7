@@ -19,7 +19,7 @@ export default function Login(){
         validationSchema: validationLogin,
         onSubmit: (value) => {
             if(value.email == 'samandar@gmail.com' && value.password == 72626327){
-                dispatch(admin());
+                dispatch(admin(value));
                 navigate('/dashboard')
             }else {
                 let user = JSON.parse(localStorage.getItem('user'));

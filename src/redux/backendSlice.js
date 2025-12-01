@@ -3,7 +3,8 @@ import { baseURL } from "./api";
 
 export const fetchAllProducts = createAsyncThunk('fetchProducts/products', async () => {
     const resp = await baseURL.get('/products');
-    console.log(resp.data.products)
+    // Ataydan kechikib mahsulotlar chiqishi uchun shunaqa qildim ↙️ Loader sal yaxshiroq ko'rinsin deb
+    await new Promise(resolve => setTimeout(resolve, 1000));
     return resp.data.products;
 });
 
@@ -11,8 +12,9 @@ const initialState = {
     mode: true,
     isAdmin: !!localStorage.getItem('isAdmin'),
     isAuth: !!localStorage.getItem("isAuth"),
-    user: JSON.parse(localStorage.getItem('user')) || {name: 'hech kim'},
+    user: null,
     products: [],
+    categories: [],
     isLoading: false,
     error: null
 }
@@ -28,21 +30,26 @@ const backendSlice = createSlice({
             state.isAuth = true;
             localStorage.setItem('isAuth', true);
         },
-        admin: (state) => {
+        admin: (state, action) => {
             state.isAdmin = true;
             localStorage.setItem('isAdmin', true);
-            localStorage.setItem('user', 'Admin')
+            localStorage.setItem('user', JSON.stringify(action.payload))
         },
         logout: (state) => {
             state.isAuth = false;
+            state.isAdmin = false;
             localStorage.removeItem('isAuth');
+            localStorage.removeItem('isAdmin')
         },
         signup: (state, action) => {
             state.user = action.payload;
             state.isAuth = true;
             localStorage.setItem('user', JSON.stringify(action.payload));
             localStorage.setItem('isAuth', true);
-        } 
+        },
+        deleteProduct: (state, action) => {
+            return {...state, products: [...state.products.filter(item => item.id !== action.payload)]}
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllProducts.pending , (state) => {
@@ -51,13 +58,18 @@ const backendSlice = createSlice({
         builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
             state.isLoading = false;
             state.products = action.payload;
+            let unikal = new Set();
+            action.payload.forEach(item => {
+                unikal.add(item.category)
+            })
+            state.categories = [...unikal];
         })
         builder.addCase(fetchAllProducts.rejected, (state) => {
             state.isLoading = false;
-            state.error = 'Xatolik'
+            state.error = true;
         })
     }
 });
 
-export const {setMode, login, admin, logout, signup} = backendSlice.actions;
+export const {setMode, login, admin, logout, signup, deleteProduct} = backendSlice.actions;
 export default backendSlice.reducer;

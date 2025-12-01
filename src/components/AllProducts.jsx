@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAllProducts } from "../redux/backendSlice"
+import { deleteProduct, fetchAllProducts } from "../redux/backendSlice"
 import Loader from "../ui/Loader"
 import Error from "../ui/Error"
-import { Edit, Lock, Pen, ShoppingCart, Star, Trash } from "lucide-react"
+import { ChevronRight, Edit, Lock, ShoppingCart, Star, Trash } from "lucide-react"
 
 export default function AllProducts(){
+    const {mode, products, isLoading, error, isAdmin, categories} = useSelector(state => state.backend);
+
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(fetchAllProducts())
+        dispatch(fetchAllProducts());
     }, [])
 
-    const {mode, products, isLoading, error, isAdmin} = useSelector(state => state.backend);
-    const [searched, setSearched] = useState(products)
 
     if(isLoading){
         return <div className={`${mode ? `dark` : `light`} w-full h-[calc(100vh-70px)] flex items-center justify-center`}>
@@ -27,8 +27,13 @@ export default function AllProducts(){
     return <div className={`${mode ? `dark` : `light`} h-[calc(100vh-70px)]`}>
         <div className={`container flex items-center justify-between h-full py-10 gap-7`}>
             <div className="h-full py-5">
-                <div className={`bg-[#0E1216] w-[250px] h-full border border-zinc-700 rounded-lg py-5 px-7`}>
-                    <h1 className="text-xl font-bold">Categories</h1>
+                <div className={`${mode ? `bg-[#0E1216]` : `bg-white`} w-[250px] h-full border border-zinc-700 rounded-lg py-5 px-7 flex flex-col gap-2`}>
+                    <h1 className="text-xl font-bold mb-5">Categories</h1>
+
+                    <button className="bg-[#5537EB] text-white flex items-center gap-2 justify-center py-2 w-full rounded-lg cursor-pointer transition-all duration-200 hover:duration-75 hover:scale-104 active:duration-75 active:scale-100">All Products <ChevronRight /></button>
+                    {categories.map((item, index) => {
+                        return <button key={index} className="border border-zinc-600 flex items-center gap-2 justify-center capitalize py-2 w-full rounded-lg cursor-pointer transition-all duration-200 hover:duration-75 hover:scale-104 active:duration-75 active:scale-100">{item}</button>
+                    })}
                 </div>
             </div>
 
@@ -52,13 +57,13 @@ export default function AllProducts(){
                                 <p className="text-xl font-semibold text-[#5537EB]">${item.price}</p>
                                 <p className="flex items-center gap-1 text-[14px]"><Star color="yellow" size={13} />{item.rating}</p>
                                 <div className="w-full flex gap-2 mt-2">
-                                    <button className="flex items-center justify-center gap-1 bg-[#5537EB] flex-1 py-2 px-3 rounded-lg cursor-pointer transition-all duration-200 active:duration-75 active:scale-95"><ShoppingCart /> Add</button>
+                                    <button className="flex items-center justify-center gap-1 bg-[#5537EB] text-whi flex-1 py-2 px-3 rounded-lg cursor-pointer transition-all duration-200 active:duration-75 active:scale-95"><ShoppingCart /> Add</button>
                                     {isAdmin ? (
                                         <div className="flex items-center gap-1">
                                             <button className="cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">
                                                 <Edit color="green" size={25} />
                                             </button>
-                                            <button className="cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">
+                                            <button onClick={() => dispatch(deleteProduct(item.id))} className="cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">
                                                 <Trash color="red" size={25} />
                                             </button>
                                         </div>
