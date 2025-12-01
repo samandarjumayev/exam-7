@@ -68,6 +68,11 @@ export default function Login(){
             <button type="submit" className="bg-[#5537EB] text-white py-2 rounded-lg outline-none mt-5 transition-all duration-200 active:duration-75 active:scale-95 font-semibold cursor-pointer">Login</button>
 
             <div className="text-center text-zinc-500 mt-3 font-semibold">Don't have an account? <NavLink to={'/signup'} className={`font-bold text-[#5537EB]`}>Sign Up</NavLink></div>
+
+            <div className="bg-[#2A2E33] rounded-lg py-3 px-4 mt-3">
+                <p>Email: samandar@gmail.com</p>
+                <p>Password: 72626327</p>
+            </div>
         </form>
     </div>
 }
