@@ -34,7 +34,7 @@ export default function Users(){
 
             <div className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 flex-1 mt-5 mb-15`}>
                 {users.map(item => {
-                    return <div key={item.firstName} className={`${mode ? `bg-[#0E1216]` : `bg-white`} relative border border-zinc-700 rounded-lg py-[21px] px-[27px] flex flex-col gap-1 cursor-pointer transition-all duration-300 hover:duration-100 hover:scale-101`}>
+                    return <NavLink to={`/users/${item.id}`} key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-white`} relative border border-zinc-700 rounded-lg py-[21px] px-[27px] flex flex-col gap-1 cursor-pointer transition-all duration-300 hover:duration-100 hover:scale-101`}>
                         <img src={item.image} alt="" className={`absolute top-[15px] right-[15px] w-[55px] h-[55px] rounded-2xl p-2`} />
                         <div>
                             <p className="text-xl font-semibold">{item.firstName} {item.lastName}</p>
@@ -54,7 +54,7 @@ export default function Users(){
                         ) : (
                             <div></div>
                         )}
-                    </div>
+                    </NavLink>
                 })}
             </div>
         </div>

@@ -7,7 +7,7 @@ import { ArrowRight, ChevronRight, Edit, Lock, ShoppingCart, Star, Trash, Wallet
 import { NavLink } from "react-router-dom"
 
 export default function Categories(){
-    const {mode, products, isLoading, error, isAdmin, categories} = useSelector(state => state.backend);
+    const {mode, isLoading, error, categories} = useSelector(state => state.backend);
 
     const dispatch = useDispatch()
     useEffect(() => {

@@ -4,15 +4,24 @@ import { baseURL } from "./api";
 export const fetchAllUsers = createAsyncThunk('users/fetchAllUsers', async () => {
     const resp = await baseURL.get('/users');
     // Ataydan kechikib userlar chiqishi uchun shunaqa qildim ↙️ Loader sal yaxshiroq ko'rinsin deb
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    console.log(resp.data.users);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    // console.log(resp.data.users);
     return resp.data.users;
+});
+
+export const fetchSingleUser = createAsyncThunk('users/fetchSingleUser', async (id) => {
+    const resp = await baseURL.get(`/users/${id}`);
+    console.log(resp.data)
+    return resp.data;
 })
 
 const initialState = {
     users: [],
     isLoading: false,
     error: false,
+    singleUser: null,
+    singleLoading: false,
+    singleError: false
 }
 
 const usersSlice = createSlice({
@@ -34,6 +43,19 @@ const usersSlice = createSlice({
         builder.addCase(fetchAllUsers.rejected, (state) => {
             state.isLoading = false;
             state.error = true;
+        });
+
+        // Single
+        builder.addCase(fetchSingleUser.pending, (state) => {
+            state.singleLoading = true;
+        })
+        builder.addCase(fetchSingleUser.fulfilled, (state, action) => {
+            state.singleLoading = false;
+            state.singleUser = action.payload;
+        })
+        builder.addCase(fetchSingleUser.rejected, (state) => {
+            state.singleLoading = false;
+            state.singleError = true;
         })
     }
 });
