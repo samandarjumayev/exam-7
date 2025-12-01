@@ -45,14 +45,14 @@ export default function AllProducts(){
                     }} type="text" placeholder="Enter something" className="border border-zinc-700 w-full outline-none px-5 py-2 rounded-lg" />
                 </div>
 
-                <div className="grid grid-cols-3 gap-5 overflow-y-auto flex-1">
+                <div className="grid grid-cols-3 gap-5 overflow-y-auto flex-1 pb-5">
                     {products.map(item => {
-                        return <div key={item.title} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
+                        return <div key={item.title} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} h-[350px] border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
                             <div className="h-[150px] flex items-center justify-center">
                                 <img src={item.images[0]} alt="" className="h-full object-contain" />
                             </div>
                             <div className="flex-1 px-5 py-3 flex flex-col gap-0">
-                                <p className="mb-2">{item.title}</p>
+                                <p className="mb-2">{item.title.slice(0, 35)}</p>
                                 <p className="text-[14px] text-zinc-500 leading-[15px]">{item.description.slice(0, 60)}...</p>
                                 <p className="text-xl font-semibold text-[#5537EB]">${item.price}</p>
                                 <p className="flex items-center gap-1 text-[14px]"><Star color="yellow" size={13} />{item.rating}</p>

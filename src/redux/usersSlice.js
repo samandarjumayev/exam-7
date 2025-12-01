@@ -4,7 +4,7 @@ import { baseURL } from "./api";
 export const fetchAllUsers = createAsyncThunk('users/fetchAllUsers', async () => {
     const resp = await baseURL.get('/users');
     // Ataydan kechikib userlar chiqishi uchun shunaqa qildim ↙️ Loader sal yaxshiroq ko'rinsin deb
-    // await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
     console.log(resp.data.users);
     return resp.data.users;
 })
