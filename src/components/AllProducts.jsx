@@ -37,7 +37,7 @@ export default function AllProducts(){
                 </div>
             </div>
 
-            <div className="flex flex-col h-[calc(100vh-70px)] gap-5 pt-5">
+            <div className="flex-1 flex flex-col h-[calc(100vh-70px)] gap-5 pt-5">
                 <div className="flex flex-col gap-3">
                     <h1 className="text-xl font-bold">All Products</h1>
                     <input onChange={(e) => {

@@ -21,13 +21,13 @@ export default function Header(){
 
             <div className={`lg:flex hidden h-full items-center gap-1 font-semibold text-[14px]`}>
                 <NavLink to={'/'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Home</NavLink>
-                <NavLink to={'/all_products'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>All Products</NavLink>
-                <NavLink to={'/users'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Users</NavLink>
-                <NavLink to={'/about'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>About</NavLink>
                 {isAdmin ? (
                     <NavLink to={'/dashboard'}  className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Dashboard</NavLink>
                 ) : ``}
+                <NavLink to={'/all_products'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>All Products</NavLink>
                 <NavLink to={'/categories'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Categories</NavLink>
+                <NavLink to={'/users'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Users</NavLink>
+                <NavLink to={'/about'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>About</NavLink>
                 <NavLink to={'/cart'} className={({isActive}) => isActive ? `${mode ? `bg-[#5537EB]` : `bg-orange-500`} text-white px-3 py-[7px] rounded-lg` : `hover:bg-white/15 rounded-lg px-3 py-[7px]`}>Cart</NavLink>
             </div>
 
