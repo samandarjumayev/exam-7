@@ -34,7 +34,7 @@ export default function Users(){
 
             <div className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 flex-1 mt-5 mb-15`}>
                 {users.map(item => {
-                    return <NavLink to={`/users/${item.id}`} key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-white`} relative border border-zinc-700 rounded-lg py-[21px] px-[27px] flex flex-col gap-1 cursor-pointer transition-all duration-300 hover:duration-100 hover:scale-101`}>
+                    return <div key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-white`} relative border border-zinc-700 rounded-lg py-[21px] px-[27px] flex flex-col gap-1 cursor-pointer transition-all duration-300 hover:duration-100 hover:scale-101`}>
                         <img src={item.image} alt="" className={`absolute top-[15px] right-[15px] w-[55px] h-[55px] rounded-2xl p-2`} />
                         <div>
                             <p className="text-xl font-semibold">{item.firstName} {item.lastName}</p>
@@ -46,15 +46,17 @@ export default function Users(){
                         <p className="text-zinc-400 flex items-center gap-2"><MapPin size={16} /> {item.address.state} - {item.address.country}</p>
                         <p className="text-zinc-400 flex items-center gap-2"><University size={16} /> {item.university}</p>
 
+                        <NavLink to={`/users/${item.id}`} className="mt-4 bg-[#5537EB] text-white flex items-center justify-center py-2 rounded-lg cursor-pointer transition-all duration-200 active:duration-75 active:scale-95">View</NavLink>
+
                         {isAdmin ? (
-                            <div className="flex items-center justify-between gap-2 mt-4">
+                            <div className="flex items-center mt-1 justify-between gap-2">
                                 <button className={`flex items-center justify-center gap-2 border border-green-600/40 text-green-600 flex-1 py-2 rounded-lg text-[14px] cursor-pointer transition-all duration-200 active:duration-75 active:scale-95`}><Edit  size={17}/> Edit</button>
                                 <button onClick={() => dispatch(deleteUser(item.id))} className={`flex items-center justify-center gap-2 border border-red-600/40 text-red-600 flex-1 py-2 rounded-lg text-[14px] cursor-pointer transition-all duration-200 active:duration-75 active:scale-95`}><Trash size={17} /> Delete</button>
                             </div>
                         ) : (
                             <div></div>
                         )}
-                    </NavLink>
+                    </div>
                 })}
             </div>
         </div>

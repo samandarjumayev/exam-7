@@ -48,7 +48,7 @@ export default function AllProducts(){
 
                 <div className="grid grid-cols-3 gap-5 overflow-y-auto flex-1 pb-5">
                     {products.map(item => {
-                        return <NavLink to={`/all_products/${item.id}`} key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} h-[350px] border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
+                        return <div key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} h-[380px] border border-zinc-600 rounded-2xl transition-all duration-400 hover:duration-75 hover:scale-103 flex flex-col gap-1`}>
                             <div className="h-[150px] flex items-center justify-center">
                                 <img src={item.images[0]} alt="" className="h-full object-contain" />
                             </div>
@@ -74,8 +74,9 @@ export default function AllProducts(){
                                         </div>
                                     )}
                                 </div>
+                                <NavLink to={`/all_products/${item.id}`} className={`text-[#5537EB] hover:text-[#3773eb] mt-2 py-1 flex items-center justify-center rounded-lg`}>View</NavLink>
                             </div>
-                        </NavLink>
+                        </div>
                     })}
                 </div>
             </div>
