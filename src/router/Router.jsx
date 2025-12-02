@@ -11,6 +11,7 @@ import Users from "../components/Users";
 import About from "../components/About";
 import SignUp from "../auth/SignUp";
 import SingleUser from "../components/SingleUser";
+import SingleProduct from "../components/SingleProduct";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
         </ProtectedRouter>
       ) },
       { path: '/all_products', element: <AllProducts /> },
+      { path: '/all_products/:id', element: <SingleProduct /> },
       { path: '/cart', element: <Cart /> },
       { path: '/users', element: <Users /> },
       { path: '/users/:id', element: <SingleUser /> },

@@ -4,6 +4,7 @@ import { deleteProduct, fetchAllProducts } from "../redux/backendSlice"
 import Loader from "../ui/Loader"
 import Error from "../ui/Error"
 import { ChevronRight, Edit, Lock, ShoppingCart, Star, Trash } from "lucide-react"
+import { NavLink } from "react-router-dom"
 
 export default function AllProducts(){
     const {mode, products, isLoading, error, isAdmin, categories} = useSelector(state => state.backend);
@@ -47,7 +48,7 @@ export default function AllProducts(){
 
                 <div className="grid grid-cols-3 gap-5 overflow-y-auto flex-1 pb-5">
                     {products.map(item => {
-                        return <div key={item.title} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} h-[350px] border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
+                        return <NavLink to={`/all_products/${item.id}`} key={item.id} className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} h-[350px] border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
                             <div className="h-[150px] flex items-center justify-center">
                                 <img src={item.images[0]} alt="" className="h-full object-contain" />
                             </div>
@@ -74,7 +75,7 @@ export default function AllProducts(){
                                     )}
                                 </div>
                             </div>
-                        </div>
+                        </NavLink>
                     })}
                 </div>
             </div>

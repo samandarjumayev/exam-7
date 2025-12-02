@@ -8,6 +8,11 @@ export const fetchAllProducts = createAsyncThunk('fetchProducts/products', async
     return resp.data.products;
 });
 
+export const fetchSingleProduct = createAsyncThunk('products/fetchSingleProduct', async (id) => {
+    const product = await baseURL.get(`/products/${id}`);
+    return product.data;
+})
+
 const initialState = {
     mode: true,
     isAdmin: !!localStorage.getItem('isAdmin'),
@@ -16,7 +21,10 @@ const initialState = {
     products: [],
     categories: [],
     isLoading: false,
-    error: null
+    error: null,
+    oneProduct: [],
+    oneProductLoading: false,
+    oneProductError: false
 }
 
 const backendSlice = createSlice({
@@ -67,6 +75,19 @@ const backendSlice = createSlice({
         builder.addCase(fetchAllProducts.rejected, (state) => {
             state.isLoading = false;
             state.error = true;
+        });
+
+        // Single Product
+        builder.addCase(fetchSingleProduct.pending, (state) => {
+            state.oneProductLoading = true;
+        })
+        builder.addCase(fetchSingleProduct.fulfilled, (state, action) => {
+            state.oneProductLoading = false;
+            state.oneProduct = action.payload;
+        })
+        builder.addCase(fetchSingleProduct.rejected, (state) => {
+            state.oneProductLoading = false;
+            state.oneProductError = true;
         })
     }
 });

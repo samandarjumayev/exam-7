@@ -1,9 +1,10 @@
-import { AtSign, Briefcase, Building2, CalendarFold, IdCard, Landmark, Loader2, LockKeyhole, Mail, MapPin, Phone, University, User } from "lucide-react";
+import { AtSign, Briefcase, Building2, CalendarFold, IdCard, Landmark, LockKeyhole, Mail, MapPin, Phone, University, User } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux"
 import Error from "../ui/Error";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchSingleUser } from "../redux/usersSlice";
+import Loader2 from "../ui/Loader2";
 
 export default function SingleUser(){
     const {mode} = useSelector(state => state.backend);
