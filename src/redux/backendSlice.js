@@ -22,7 +22,7 @@ const initialState = {
     categories: [],
     isLoading: false,
     error: null,
-    oneProduct: [],
+    oneProduct: null,
     oneProductLoading: false,
     oneProductError: false
 }

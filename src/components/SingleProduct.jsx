@@ -28,7 +28,6 @@ export default function SingleProduct(){
     return <div className={`${mode ? `dark` : `light`} w-full h-[calc(100vh-70px)] flex items-center justify-center`}>
         <div className={`${mode ? `bg-[#0E1216]` : `bg-[#FFFFFF]`} max-w-[500px] border border-zinc-600 rounded-2xl transition-all duration-400 flex flex-col gap-1`}>
             <div className="h-[150px] flex items-center justify-center">
-                {console.log(oneProduct)}
                 <img src={oneProduct.images[0]} alt="" className="h-full object-contain" />
             </div>
             <div className="flex-1 px-5 py-3 flex flex-col gap-0">
