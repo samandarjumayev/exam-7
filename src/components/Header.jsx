@@ -5,7 +5,7 @@ import { AtSign, ChartBarStacked, ChartNoAxesCombined, FolderKanban, Home, Libra
 import { useState } from "react";
 
 export default function Header(){
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [hide, setHide] = useState(true);
     const [profileHide, setProfileHide] = useState(true);
 

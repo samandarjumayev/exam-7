@@ -12,6 +12,7 @@ import About from "../components/About";
 import SignUp from "../auth/SignUp";
 import SingleUser from "../components/SingleUser";
 import SingleProduct from "../components/SingleProduct";
+import CategoryPage from "../components/CategoryPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: '/about', element: <About /> },
       { path: '/categories', element: <Categories /> },
+      { path: '/categories/:category', element: <CategoryPage /> },
       { path: '/dashboard', element: (
         <ProtectedRouter>
           <Dashboard />
